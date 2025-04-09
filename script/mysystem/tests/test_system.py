@@ -9,12 +9,11 @@ class TestPlatform(unittest.TestCase):
         self.assertFalse(mysystem.is_supported_os('Windows'))
 
     def test_memory(self):
-        for mem in [ 64, 128, 256 ]: 
+        for mem in [64, 128, 256]:
             self.assertTrue(mysystem.is_enough_memory(mem))
 
-        for mem in [ 16 , 24 , 32, 65, 'A' ]: 
+        for mem in [16, 24, 32, 65, 'A']:
             self.assertFalse(mysystem.is_enough_memory(mem))
 
 if __name__ == "__main__":
     unittest.main()
-
