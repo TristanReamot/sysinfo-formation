@@ -1,19 +1,32 @@
-name: builder
-on: workflow_dispatch
+name: sysinfo CI
+on: push
 
-jobs:  
-  verification-syntaxe-python:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v6
-      - name: lancer makefile
-        run: make build
-      - name: setup python
-        uses: actions/setup-python@v5
-        with: 
-          python-version: '3.12'
-      - name: installation des dépendances
-        run: pip install ifaddr psutil pylint
-      - name: exécution du test
-        run: pylint --disable=missing-docstring script/mysystem/mysystem.py
+jobs:
+    C-Ci-verif-syntax:
+        runs-on: ubuntu-latest
+        steps:
+            - name: sysinfo vérification
+              run: make lint
+
+    C-ci-sysinfo:
+        needs: C-Ci-verif-syntax
+        runs-on: ubuntu-latest
+        steps:
+            - name: sysinfo checkout
+              uses: actions/checkout@v6
+            - name: sysinfo compilation
+              run: make build
+    
+    Py-ci-mysystem:
+        runs-on: ubuntu-latest
+        steps:
+            - name: sysinfo checkout
+              uses: actions/checkout@v6
+            - name: Python environment
+              uses: actions/setup-python@v5
+              with:
+                python-version: 3.12
+            - name: lint verification
+              run: |
+                pip install ifaddr psutil pylint
+                pylint --disable=missing-docstring script/mysystem/mysystem.py
