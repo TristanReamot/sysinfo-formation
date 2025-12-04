@@ -1,0 +1,12 @@
+name: premierWorkflow
+on: push
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: information sur la machine
+        run: |
+          hostnamectl
+          ip a -4
+          who am i
