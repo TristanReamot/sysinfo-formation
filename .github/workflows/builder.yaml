@@ -1,17 +1,14 @@
 name: builder
 on: workflow_dispatch
 
-jobs: 
-  network-and-system:
+jobs:  
+  verification-syntaxe-python:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v6
       - name: lancer makefile
         run: make build
-  verification-syntaxe-python:
-    runs-on: ubuntu-latest
-    steps:
       - name: setup python
         uses: actions/setup-python@v5
         with: 
