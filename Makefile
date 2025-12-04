@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -I./src
 SRC=src/sysinfo.c
-DEST=bin/sysinfo
+DEST=sysinfo
 
 all: lint build run
 
@@ -9,7 +9,6 @@ lint: $(SRC)
 	$(CC) -fsyntax-only $(SRC)
 
 build: $(SRC)
-	mkdir bin
 	$(CC) $(CFLAGS) -o $(DEST) $(SRC)
 
 run: $(DEST)
