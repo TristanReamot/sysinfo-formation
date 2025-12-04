@@ -1,0 +1,13 @@
+name: builder
+on: workflow_dispatch
+
+jobs: 
+  network-and-system:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.10
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6
+      - name: lancer makefile
+        run: make build
