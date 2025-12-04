@@ -2,11 +2,12 @@ name: premierWorkflow
 on: push
 
 jobs: 
-  build:
+  network-and-system:
     runs-on: ubuntu-latest
     steps:
       - name: information sur la machine
-        run: |
-          hostnamectl
-          ip a -4
-          who am i
+        run: hostnamectl
+      - name: adressage ipv4
+        run: ip a -4    
+      - name: mon identité de connexion
+        run: who am i
