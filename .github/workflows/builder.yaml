@@ -9,3 +9,14 @@ jobs:
         uses: actions/checkout@v6
       - name: lancer makefile
         run: make build
+  verification-syntaxe-python:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.12
+    steps:
+      - name: installation des dépendances
+        run: pip install ifaddr psutil pylint
+      - name: exécution du test
+        run: pylint --disable=missing-docstring script/mysystem/mysystem.py
+        
+
