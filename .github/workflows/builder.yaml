@@ -11,12 +11,12 @@ jobs:
         run: make build
   verification-syntaxe-python:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.12
     steps:
+      - name: setup python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.12'
       - name: installation des dépendances
         run: pip install ifaddr psutil pylint
       - name: exécution du test
         run: pylint --disable=missing-docstring script/mysystem/mysystem.py
-        
-
